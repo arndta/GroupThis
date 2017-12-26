@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Test GroupMe Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <style>
+        .api-output {
+            height: 500px;
+            margin-top: 5px;
+        }
+        .templates {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h3>GroupThis Test Page</h3>
+                <strong>Access Token:</strong>
+                <br/>
+                <input type="text" class="form-control" id="access-token" value=""></input>
+                <br/>
+
+                <ul class="nav nav-pills nav-justified">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="pill" href="#getGroupsList">1. getGroupsList()</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="pill" href="#getGroupMessages">2. getGroupMessages(groupId)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="pill" href="#getGroupGallery">2. getGroupGallery(groupId)</a>
+                    </li>
+                </ul>
+
+                <br/>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="getGroupsList" role="tabpanel">
+                        <button type="button" id="get-groups" class="btn btn-success">Get Group Info</button>
+
+                        <br/><br/>
+
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#getGroupsList-Formatted">Formatted</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#getGroupsList-Raw">Raw Data</a>
+                            </li>
+                        </ul>                        
+
+                        <br/>
+
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="getGroupsList-Formatted" role="tabpanel">
+                                    
+                            </div>
+                            <div class="tab-pane" id="getGroupsList-Raw" role="tabpanel">
+                                    <textarea id="getGroupsList-output-raw" class="form-control api-output"></textarea>
+                            </div>
+                        </div>                        
+                        
+                    </div>
+                    <div class="tab-pane" id="getGroupMessages" role="tabpanel">
+                        <strong>Group:</strong>
+                        <br/>
+                        <select class="form-control" id="group-messages-select"></select>
+                        <br/>
+                        <button type="button" id="get-messages" class="btn btn-success">Get Group Messages</button>
+
+                        <br/><br/>
+
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#getGroupMessages-Formatted">Formatted</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#getGroupMessages-Raw">Raw Data</a>
+                            </li>
+                        </ul>                        
+
+                        <br/>
+
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="getGroupMessages-Formatted" role="tabpanel">
+                                    
+                            </div>
+                            <div class="tab-pane" id="getGroupMessages-Raw" role="tabpanel">
+                                    <textarea id="getGroupMessages-output-raw" class="form-control api-output"></textarea>
+                            </div>
+                        </div>                         
+                    </div>
+                    <div class="tab-pane" id="getGroupGallery" role="tabpanel">
+                        <strong>Group:</strong>
+                        <br/>
+                        <select class="form-control" id="group-gallery-select"></select>
+                        <br/>
+                        <button type="button" id="get-gallery" class="btn btn-success">Get Group Gallery</button>
+
+                        <br/><br/>
+
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#getGroupGallery-Formatted">Formatted</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#getGroupGallery-Raw">Raw Data</a>
+                            </li>
+                        </ul>                        
+
+                        <br/>
+
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="getGroupGallery-Formatted" role="tabpanel">
+                                    
+                            </div>
+                            <div class="tab-pane" id="getGroupGallery-Raw" role="tabpanel">
+                                    <textarea id="getGroupGallery-output-raw" class="form-control api-output"></textarea>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+
+    <div class="templates">
+        <div class="group-card">
+            <div class="col-md-4 col-xs-6">
+                <div class="card h-100">
+                    <img class="card-img-top img-fluid" src="[group_image_url]">
+                    <div class="card-body">
+                        <h4 class="card-title">[group_name]</h4>
+                        <p class="card-text">
+                            <strong>Message Count: [group_message_count]</strong>
+                            <br/>
+                            [group_members]</p>
+                    </div>
+                </div>        
+            </div>
+        </div>
+        <div class="message-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">[message_name]</h4>
+                    <p class="card-text">[message_text]</p>
+                    <p class="card-text"><small class="text-muted">[message_time]</small></p>
+                </div>
+            </div>        
+        </div>
+        <div class="gallery-card">
+            <div class="col-md-4 col-xs-6">
+                <div class="card h-100">
+                    <img class="card-img-top img-fluid" src="[group_gallery_image_url]">
+                    <div class="card-body">
+                        <h4 class="card-title">[group_gallery_name]</h4>
+                        <p class="card-text">[group_gallery_text]</p>
+                    </div>
+                </div>        
+            </div>
+        </div>                  
+    </div>
+
+    <script  src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>    
+    <script src="../js/groupthis.js"></script>
+    <script src="test.js"></script>
+</body>
+</html>
